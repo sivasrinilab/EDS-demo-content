@@ -544,7 +544,7 @@ function decorateSections(main) {
 let json ={}
 function buildBlock(blockName, content) {
   json["blockName"] = blockName;
-  json['content'] = content;
+  json['content'] = Array.isArray(content) ? content : [[content]];
   const table = Array.isArray(content) ? content : [[content]];
   const blockEl = document.createElement('div');
   // build image block nested div structure
