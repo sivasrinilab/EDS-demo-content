@@ -143,8 +143,9 @@ function loadDelayed() {
 let blocks =document.querySelectorAll('[data-block-name]');
   if(blocks.length > 0){
     const json = {};
-    for(var i=0; i< blocks.length;i++ )
+    for(var i=0; i< blocks.length;i++ ){
     let blockName = blocks[i].getAttribute('blockName');
+    }
   }
 
    
