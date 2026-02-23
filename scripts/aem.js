@@ -248,6 +248,7 @@ function readBlockConfig(block) {
       }
     }
   });
+  alert(config)
   return config;
 }
 
