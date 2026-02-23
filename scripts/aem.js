@@ -391,6 +391,7 @@ function wrapTextNodes(block) {
     'H6',
     'HR',
   ];
+  json['blockName'] = block.classList[0];
 
   const wrap = (el) => {
     const wrapper = document.createElement('p');
@@ -401,10 +402,13 @@ function wrapTextNodes(block) {
       .filter(({ nodeName }) => nodeName === 'class'
         || nodeName.startsWith('data-aue')
         || nodeName.startsWith('data-richtext'))
+      let contentObj = {}
       .forEach(({ nodeName, nodeValue }) => {
+        contentObj[nodeName] = nodeValue;
         wrapper.setAttribute(nodeName, nodeValue);
         el.removeAttribute(nodeName);
       });
+    json['content'] = JSON.Stringfy(contentObj);
     el.append(wrapper);
   };
 
@@ -541,10 +545,9 @@ function decorateSections(main) {
  * @param {string} blockName name of the block
  * @param {*} content two dimensional array or string or object of content
  */
-let json ={}
+
 function buildBlock(blockName, content) {
-  json["blockName"] = blockName;
-  json['content'] = Array.isArray(content) ? content : [[content]];
+ 
   const table = Array.isArray(content) ? content : [[content]];
   const blockEl = document.createElement('div');
   // build image block nested div structure
@@ -611,7 +614,8 @@ async function loadBlock(block) {
  * Decorates a block.
  * @param {Element} block The block element
  */
-function decorateBlock(block) {
+let json ={}
+function decorateBlock(block) {  
   const shortBlockName = block.classList[0];
   if (shortBlockName && !block.dataset.blockStatus) {
     block.classList.add('block');
