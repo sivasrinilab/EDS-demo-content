@@ -397,21 +397,21 @@ function wrapTextNodes(block) {
     const wrapper = document.createElement('p');
     wrapper.append(...el.childNodes);
     [...el.attributes]
+      json['content'] = JSON.Stringfy(el);
+    
       // move the instrumentation from the cell to the new paragraph, also keep the class
       // in case the content is a buttton and the cell the button-container
       .filter(({ nodeName }) => nodeName === 'class'
         || nodeName.startsWith('data-aue')
         || nodeName.startsWith('data-richtext'))
-      let contentObj = {}
+      
       .forEach(({ nodeName, nodeValue }) => {
-        contentObj[nodeName] = nodeValue;
+       
         wrapper.setAttribute(nodeName, nodeValue);
         el.removeAttribute(nodeName);
       });
-    json['content'] = JSON.Stringfy(contentObj);
     el.append(wrapper);
   };
-
   block.querySelectorAll(':scope > div > div').forEach((blockColumn) => {
     if (blockColumn.hasChildNodes()) {
       const hasWrapper = !!blockColumn.firstElementChild
