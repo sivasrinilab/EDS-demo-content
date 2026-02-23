@@ -144,7 +144,8 @@ let blocks =document.querySelectorAll('[data-block-name]');
   if(blocks.length > 0){
     const json = {};
     for(var i=0; i< blocks.length;i++ ){
-    let blockName = blocks[i].getAttribute('blockName');
+    let blockName = blocks[i].dataset.blockName;
+      json["block"] = blockName;
     }
   }
 
