@@ -29,7 +29,6 @@ async function applyChanges(event) {
 
   const sanitizedContent = window.DOMPurify.sanitize(content, { USE_PROFILES: { html: true } });
   const parsedUpdate = new DOMParser().parseFromString(sanitizedContent, 'text/html');
-  alert(sanitizedContent)
   const element = document.querySelector(`[data-aue-resource="${resource}"]`);
 
   if (element) {
