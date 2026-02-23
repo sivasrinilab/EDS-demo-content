@@ -245,7 +245,6 @@ function readBlockConfig(block) {
           }
         } else value = row.children[1].textContent;
         config[name] = value;
-        alert(name +" :: " + value);
       }
     }
   });
