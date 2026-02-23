@@ -1,5 +1,5 @@
 // add delayed functionality here
-addEventListener("DOMContentLoaded", (event) => {
+addEventListener("DOMContentLoaded", => {
 
 
    const json = {};
