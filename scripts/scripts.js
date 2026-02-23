@@ -137,6 +137,7 @@ function loadDelayed() {
   alert('hi')
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
+  
   // add delayed functionality here
     console.log("DOM fully loaded and parsed");
 let blocks =document.querySelectorAll('[data-block-name]');
