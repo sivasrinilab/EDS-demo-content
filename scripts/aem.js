@@ -391,25 +391,23 @@ function wrapTextNodes(block) {
     'H6',
     'HR',
   ];
-  json['blockName'] = block.classList[0];
 
   const wrap = (el) => {
     const wrapper = document.createElement('p');
     wrapper.append(...el.childNodes);
     [...el.attributes]
-      json['content'] = JSON.Stringfy(el);
-    
       // move the instrumentation from the cell to the new paragraph, also keep the class
       // in case the content is a buttton and the cell the button-container
       .filter(({ nodeName }) => nodeName === 'class'
         || nodeName.startsWith('data-aue')
-        || nodeName.startsWith('data-richtext'))      
-      .forEach(({ nodeName, nodeValue }) => {       
+        || nodeName.startsWith('data-richtext'))
+      .forEach(({ nodeName, nodeValue }) => {
         wrapper.setAttribute(nodeName, nodeValue);
         el.removeAttribute(nodeName);
       });
     el.append(wrapper);
   };
+
   block.querySelectorAll(':scope > div > div').forEach((blockColumn) => {
     if (blockColumn.hasChildNodes()) {
       const hasWrapper = !!blockColumn.firstElementChild
@@ -543,9 +541,7 @@ function decorateSections(main) {
  * @param {string} blockName name of the block
  * @param {*} content two dimensional array or string or object of content
  */
-
 function buildBlock(blockName, content) {
- 
   const table = Array.isArray(content) ? content : [[content]];
   const blockEl = document.createElement('div');
   // build image block nested div structure
@@ -612,8 +608,7 @@ async function loadBlock(block) {
  * Decorates a block.
  * @param {Element} block The block element
  */
-let json ={}
-function decorateBlock(block) {  
+function decorateBlock(block) {
   const shortBlockName = block.classList[0];
   if (shortBlockName && !block.dataset.blockStatus) {
     block.classList.add('block');
